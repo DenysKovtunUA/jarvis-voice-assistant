@@ -36,18 +36,15 @@ class JarvisConversationAgent(conversation.ConversationEntity, conversation.Abst
     async def async_process(
         self, user_input: conversation.ConversationInput
     ) -> conversation.ConversationResult:
-        """Основной обработчик: забирает текст и пуляет на порт 8090 с динамическим таймаутом."""
+        """Основной обработчик: шлет текст на порт 8090 с жестким таймаутом 45с."""
         user_text = user_input.text.strip()
         conversation_id = user_input.conversation_id or "jarvis_session"
         language = user_input.language
         
         _LOGGER.info("Jarvis Agent captured voice text: '%s'", user_text)
 
-        # Вытаскиваем таймаут из настроек интеграции (по умолчанию ставим 45 секунд, если пусто)
-        custom_timeout = self._config_entry.data.get("timeout", 45)
-        _LOGGER.info("Applying dynamic session timeout: %s seconds", custom_timeout)
-
-        # Подставляем реальный локальный IP твоей Orange Pi 5 Pro
+        # ЖЕСТКИЙ ИНЖЕНЕРНЫЙ ТАЙМАУТ: 45 секунд на удержание сокета ядра HA Core!
+        custom_timeout = 45
         agent_url = "http://192.168.50.175:8090"
         ai_response = "I am ready, Sir."
 
@@ -59,7 +56,7 @@ class JarvisConversationAgent(conversation.ConversationEntity, conversation.Abst
         }
 
         try:
-            # Обертываем всю операцию в asyncio.timeout, чтобы заблокировать внутренний 10с лимит HA Core
+            # Принудительно заставляем HA Core держать сессию открытой до 45 секунд
             async with asyncio.timeout(custom_timeout):
                 timeout_config = aiohttp.ClientTimeout(total=custom_timeout)
                 
