@@ -21,5 +21,4 @@ class JarvisVoiceConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             title="Jarvis v3.1 Engine",
             data={}
         )
-ч
 
