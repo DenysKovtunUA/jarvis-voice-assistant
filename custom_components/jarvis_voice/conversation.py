@@ -47,7 +47,7 @@ class JarvisConversationAgent(conversation.ConversationEntity, conversation.Abst
         _LOGGER.info("Jarvis Agent captured voice text: '%s'", user_text)
 
         # По умолчанию шлем на локальный хост Оранж Пи, сеть host прокинет пакет куда надо
-        agent_url = "http://127.0.0"
+        agent_url = "http://127.0.0.1:8090"
         ai_response = "I am ready, Sir."
 
         # Формируем плоский, легкий payload для нашего voice_interface.py
