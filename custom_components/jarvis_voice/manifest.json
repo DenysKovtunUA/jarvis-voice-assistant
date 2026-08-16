@@ -1,0 +1,10 @@
+{
+  "domain": "jarvis_voice",
+  "name": "Jarvis v3.1 Engine",
+  "codeowners": ["@Denys"],
+  "config_flow": true,
+  "documentation": "https://github.com",
+  "iot_class": "local_polling",
+  "version": "3.1.0"
+}
+
