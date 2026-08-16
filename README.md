@@ -43,7 +43,7 @@ Unlike generic bloatware LLM integrations, this component completely strips away
 2. Click on the **three vertical dots** in the top right corner and select **Custom repositories**.
 3. In the **Repository** text field, paste your GitHub link:
    ```text
-   https://github.com
+   https://github.com/DenysKovtunUA/jarvis-voice-assistant
    ```
 4. In the **Type** dropdown menu, select **Integration** and click **Add**.
 5. Find the newly appeared `Jarvis v3.1 Engine` card, click on it, and select **Download**.
